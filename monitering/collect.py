@@ -1,8 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
-# from check import check_category
-
+from check import check_category
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'}
@@ -23,9 +22,9 @@ def collect_ranking():
         item = data[i].get_text()
 
         print(i + 1, item)
-        # result = check_category(item)
-        # print("유형", result[0])
-        # print("연관검색어", result[1])
+        result = check_category(item)
+        print("유형", result[0])
+        print("연관검색어", result[1])
 
         collect_news(item)
 
