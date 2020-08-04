@@ -1,1 +1,1 @@
-print("설치 완료 :)")
+print('__init__.py')
