@@ -1,13 +1,14 @@
 from setuptools import setup, find_packages
 from os import path
 
-this = path.abspath(path.dirname(__file__))
-with open(path.join(this, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
+def file(path: str) -> str:
+    with open('README.md', encoding='utf8') as f:
+        description = f.read()
+    return description
 
 setup(
-    name='trend-monitoring',
-    version='0.0.3',
+    name='monitering',
+    version='0.0.5',
     description='Real-time Trend Data Analysis/Monitoring System',
     author='Jihoon Kang',
     author_email='jihoon522@naver.com',
@@ -38,4 +39,6 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent"
     ],
+    long_description=file('README.md'),
+    long_description_content_type='text/markdown',
 )
