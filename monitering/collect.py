@@ -9,25 +9,36 @@ HEADERS = {
 
 def collect_ranking():
     url = 'https://datalab.naver.com/keyword/realtimeList.naver?entertainment=2&groupingLevel=4&marketing=-2&news=-2&sports=-2&where=main'
+    date = datetime.now()
+    dicts = []
 
     res = requests.get(url, headers=HEADERS)
     soup = BeautifulSoup(res.content, 'html.parser')
     data = soup.select('span.item_title')
 
-    now = datetime.now()
-
-    print(now.year, now.month, now.day, now.hour, now.minute)
+    print(date.year, date.month, date.day, date.hour, date.minute)
 
     for i in range(0, 10):
+        dict = {}
         item = data[i].get_text()
 
-        print(i + 1, item)
+        # print(i + 1, item)
         result = check_category(item)
-        print("유형", result[0])
-        print("연관검색어", result[1])
+        # print("유형", result[0])
+        # print("연관검색어", result[1])
 
-        collect_news(item)
+        title = collect_news(item)
 
+        dict['ranking'] = i+1
+        dict['word'] = item
+        dict['category'] = result[0]
+        dict['related_word'] = result[1]
+        dict['keyword'] = []
+        dict['news_title'] = title
+        dict['timestamp'] = date
+        dicts.append(dict)
+
+    return dicts
 
 def collect_news(item):
     news_url = "https://search.naver.com/search.naver?where=news&query=" + item
@@ -43,6 +54,7 @@ def collect_news(item):
         # time = new.select_one("dd.txt_inline").select_one("span.bar").next_sibling
         # time = str(time)[1:-1]
 
-        print(title)
+        # print(title)
 
     print("--------------")
+    return news[0].select_one("a._sp_each_title").text

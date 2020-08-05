@@ -1,5 +1,7 @@
+from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
+
 
 def check_category(item):
     headers = {
