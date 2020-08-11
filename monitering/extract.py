@@ -61,12 +61,12 @@ def extract_keyword_textrank(word, news_links):
     max_length = 10
     wordrank_extractor = KRWordRank(min_count=min_count, max_length=max_length)
     beta = 0.85
-    max_iter = 10
+    max_iter = 10표
     texts = result
 
     keywords, rank, graph = wordrank_extractor.extract(texts, beta, max_iter)
 
-    stopwords = {'영화', '뉴스', '기자', '이슈', '기사'}
+    stopwords = {'영화', '뉴스', '기자', '이슈', '기사', '평점', '주연', '방송', '편성'}
 
     passwords = {word: score for word, score in sorted(
         keywords.items(), key=lambda x: -x[1])[:100] if not (word in stopwords)}
