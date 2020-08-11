@@ -1,7 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+from newspaper import Article
 from check import check_category
+from extract import extract_related_keyword
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'}
@@ -9,52 +11,46 @@ HEADERS = {
 
 def collect_ranking():
     url = 'https://datalab.naver.com/keyword/realtimeList.naver?entertainment=2&groupingLevel=4&marketing=-2&news=-2&sports=-2&where=main'
-    date = datetime.now()
+    date = datetime.utcnow()
     dicts = []
 
     res = requests.get(url, headers=HEADERS)
     soup = BeautifulSoup(res.content, 'html.parser')
     data = soup.select('span.item_title')
 
-    print(date.year, date.month, date.day, date.hour, date.minute)
-
     for i in range(0, 10):
         dict = {}
-        item = data[i].get_text()
+        word = data[i].get_text()
 
-        # print(i + 1, item)
-        result = check_category(item)
-        # print("유형", result[0])
-        # print("연관검색어", result[1])
+        result = check_category(word)
 
-        title = collect_news(item)
+        main_title, news_links = collect_news(word)
+        related_keyword = extract_related_keyword(word, news_links)
+
 
         dict['ranking'] = i+1
-        dict['word'] = item
+        dict['word'] = word
         dict['category'] = result[0]
         dict['related_word'] = result[1]
         dict['keyword'] = []
-        dict['news_title'] = title
+        dict['news_title'] = main_title
         dict['timestamp'] = date
         dicts.append(dict)
 
     return dicts
 
-def collect_news(item):
-    news_url = "https://search.naver.com/search.naver?where=news&query=" + item
+def collect_news(word):
+    news_url = "https://search.naver.com/search.naver?where=news&query=" + word
     news_res = requests.get(news_url, headers=HEADERS)
     soup = BeautifulSoup(news_res.text, 'html.parser')
 
     news = soup.select("ul.type01 > li")
+    main_title = news[0].select_one("a._sp_each_title").text
+    news_links = []
     print("--------------")
     for new in news[0:3]:
         title = new.select_one("a._sp_each_title").text
+        link = new.select_one("a")['href']
+        news_links.append(link)
 
-        # source = new.select_one("span._sp_each_source").text
-        # time = new.select_one("dd.txt_inline").select_one("span.bar").next_sibling
-        # time = str(time)[1:-1]
-
-        # print(title)
-
-    print("--------------")
-    return news[0].select_one("a._sp_each_title").text
+    return main_title, news_links
