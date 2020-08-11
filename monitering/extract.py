@@ -1,5 +1,5 @@
 from konlpy.tag import Okt
-from newspaper import Article
+from newspaper import Article, ArticleException
 from collections import Counter
 
 
@@ -9,9 +9,12 @@ def extract_related_keyword(word, news_links):
     for news_link in news_links:
         article = Article(news_link, language='ko')
         article.download()
-        article.parse()
-        content = article.text
-        result += content
+        try:
+            article.parse()
+            content = article.text
+            result += content
+        except ArticleException as ae:
+            continue
 
     nouns = okt.nouns(result)
 

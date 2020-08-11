@@ -9,7 +9,6 @@ def run(es_flag=True):
     timer = threading.Timer(interval_second, run)
     timer.start()
     dicts = collect_ranking()
-
     print(dicts)
     if es_flag:
         insert(dicts)
