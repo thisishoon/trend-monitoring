@@ -32,7 +32,7 @@ def collect_ranking():
         dict['word'] = word
         dict['category'] = result[0]
         dict['related_word'] = result[1]
-        dict['keyword'] = []
+        dict['related_keyword'] = related_keyword
         dict['news_title'] = main_title
         dict['timestamp'] = date
         dicts.append(dict)
