@@ -15,11 +15,14 @@ def extract_related_keyword(word, news_links):
 
     nouns = okt.nouns(result)
 
-    for k, v in enumerate(nouns):
-        if len(v) < 2 or v == word:
-            nouns.pop(k)
+    nouns_over_2char = []
+    for noun in nouns:
+        if len(noun) < 2 or noun == word:
+            continue
+        else:
+            nouns_over_2char.append(noun)
 
-    count = Counter(nouns)
-    related_keyword = count.most_common(10)
+    count = Counter(nouns_over_2char).most_common(10)
+    related_keyword = [i[0] for i in count]
 
     return related_keyword

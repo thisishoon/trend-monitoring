@@ -27,17 +27,17 @@ def collect_ranking():
         main_title, news_links = collect_news(word)
         related_keyword = extract_related_keyword(word, news_links)
 
-
-        dict['ranking'] = i+1
+        dict['ranking'] = i + 1
         dict['word'] = word
         dict['category'] = result[0]
-        dict['related_word'] = result[1]
+        dict['related_search_word'] = result[1]
         dict['related_keyword'] = related_keyword
         dict['news_title'] = main_title
         dict['timestamp'] = date
         dicts.append(dict)
 
     return dicts
+
 
 def collect_news(word):
     news_url = "https://search.naver.com/search.naver?where=news&query=" + word

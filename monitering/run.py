@@ -18,5 +18,8 @@ def run(es_flag=True):
 
 
 if __name__ == '__main__':
-    es_flag = sys.argv[1]
+    es_flag = True
+    if sys.argv[0] == 2:
+        es_flag = sys.argv[1]
+
     run(es_flag)
