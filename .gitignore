@@ -119,3 +119,6 @@ dmypy.json
 .pyre/
 
 example.ipynb
+.idea
+.idea/
+.idea/*
