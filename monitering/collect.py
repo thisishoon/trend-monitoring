@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from newspaper import Article
 from check import check_category
-from extract import extract_related_keyword
+from extract import extract_keyword_textrank, extract_keyword_frequency
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'}
@@ -25,7 +25,7 @@ def collect_ranking():
         result = check_category(word)
 
         main_title, news_links = collect_news(word)
-        related_keyword = extract_related_keyword(word, news_links)
+        related_keyword = extract_keyword_textrank(word, news_links)
 
         dict['ranking'] = i + 1
         dict['word'] = word
@@ -48,7 +48,7 @@ def collect_news(word):
     main_title = news[0].select_one("a._sp_each_title").text
     news_links = []
     print("--------------")
-    for new in news[0:3]:
+    for new in news[0:5]:
         title = new.select_one("a._sp_each_title").text
         link = new.select_one("a")['href']
         news_links.append(link)
