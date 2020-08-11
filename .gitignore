@@ -122,3 +122,4 @@ example.ipynb
 .idea
 .idea/
 .idea/*
+.idea/workspace.xml
