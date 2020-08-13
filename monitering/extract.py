@@ -32,7 +32,31 @@ def extract_keyword_frequency(word, news_links):
     return related_keyword
 
 
-def extract_keyword_textrank(word, news_links):
+def extract_keyword_textrank(nouns_list):
+
+    min_count = 5
+    max_length = 10
+    wordrank_extractor = KRWordRank(min_count=min_count, max_length=max_length)
+    beta = 0.85
+    max_iter = 10
+    texts = nouns_list
+
+    keywords, rank, graph = wordrank_extractor.extract(texts, beta, max_iter)
+
+    stopwords = {'영화', '뉴스', '기자', '이슈', '기사', '평점', '주연', '방송', '편성표'}
+
+    passwords = {word: score for word, score in sorted(
+        keywords.items(), key=lambda x: -x[1])[:100] if not (word in stopwords)}
+
+    related_keyword = list(passwords.keys())
+
+    if len(related_keyword) > 10:
+        return related_keyword[:10]
+    else:
+        return related_keyword
+
+
+def make_nouns_list(word, news_links):
     okt = Okt()
     result = []
 
@@ -53,23 +77,4 @@ def extract_keyword_textrank(word, news_links):
             str = " ".join(noun for noun in nouns if len(noun) > 1 and noun != word)
             result.append(str)
 
-    min_count = 5
-    max_length = 10
-    wordrank_extractor = KRWordRank(min_count=min_count, max_length=max_length)
-    beta = 0.85
-    max_iter = 10
-    texts = result
-
-    keywords, rank, graph = wordrank_extractor.extract(texts, beta, max_iter)
-
-    stopwords = {'영화', '뉴스', '기자', '이슈', '기사', '평점', '주연', '방송', '편성표'}
-
-    passwords = {word: score for word, score in sorted(
-        keywords.items(), key=lambda x: -x[1])[:100] if not (word in stopwords)}
-
-    related_keyword = list(passwords.keys())
-
-    if len(related_keyword) > 10:
-        return related_keyword[:10]
-    else:
-        return related_keyword
+    return result
