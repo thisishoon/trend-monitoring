@@ -13,13 +13,14 @@ def check_category(item):
 
     category = []
     person_result = check_person(soup)
+    movie_result = check_movie(soup)
     tv_result = check_tv(soup)
 
-    if person_result is not False:
+    if person_result:
         category += person_result
-    elif check_movie(soup) is not False:
+    elif movie_result:
         category.append("영화")
-    elif check_tv(soup) is not False:
+    elif tv_result:
         category.append(tv_result)
     else:
         category.append("Unknown")
@@ -60,11 +61,11 @@ def check_related_search(soup):
     related_search = soup.select("#nx_related_keywords > dl > dd.lst_relate._related_keyword_list > ul li")
     result = []
 
-    if not related_search:
+    if related_search:
+        for i in related_search:
+            result.append(i.text.strip())
         return result
 
     else:
-        for i in related_search:
-            result.append(i.text.strip())
         return result
 

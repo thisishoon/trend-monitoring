@@ -47,7 +47,6 @@ def extract_keyword_textrank(word, news_links):
             continue
 
         if content == '':
-            print("없당")
             continue
         else:
             nouns = okt.nouns(content)

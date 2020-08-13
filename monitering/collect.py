@@ -16,27 +16,14 @@ def collect_ranking():
 
     res = requests.get(url, headers=HEADERS)
     soup = BeautifulSoup(res.content, 'html.parser')
-    data = soup.select('span.item_title')
+    ranking = soup.select('span.item_title')
+    result = []
+    for word in ranking[0:10]:
+        result.append(word.text)
 
-    for i in range(0, 10):
-        dict = {}
-        word = data[i].get_text()
+    return result
 
-        result = check_category(word)
 
-        main_title, news_links = collect_news(word)
-        related_keyword = extract_keyword_textrank(word, news_links)
-
-        dict['ranking'] = i + 1
-        dict['word'] = word
-        dict['category'] = result[0]
-        dict['related_search_word'] = result[1]
-        dict['related_keyword'] = related_keyword
-        dict['news_title'] = main_title
-        dict['timestamp'] = date
-        dicts.append(dict)
-
-    return dicts
 
 
 def collect_news(word):
@@ -45,12 +32,13 @@ def collect_news(word):
     soup = BeautifulSoup(news_res.text, 'html.parser')
 
     news = soup.select("ul.type01 > li")
-    main_title = news[0].select_one("a._sp_each_title").text
+    news_titles = []
     news_links = []
     print("--------------")
     for new in news[0:5]:
         title = new.select_one("a._sp_each_title").text
         link = new.select_one("a")['href']
+        news_titles.append(title)
         news_links.append(link)
 
-    return main_title, news_links
+    return news_titles, news_links
