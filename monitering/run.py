@@ -8,7 +8,6 @@ from datetime import datetime
 
 
 def run(es_flag=True, interval_second=600):
-
     timer = threading.Timer(interval_second, run, args=[es_flag, interval_second])
     timer.start()
 
@@ -47,6 +46,3 @@ if __name__ == '__main__':
         es_flag = (sys.argv[1] != 'False')
 
     run(es_flag)
-
-
-

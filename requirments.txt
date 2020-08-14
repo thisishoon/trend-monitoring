@@ -19,6 +19,7 @@ elasticsearch==7.8.1
 execnet==1.7.1
 feedfinder2==0.0.4
 feedparser==5.2.1
+flake8==3.8.3
 gensim==3.8.3
 idna==2.10
 iniconfig==1.0.1
@@ -35,6 +36,7 @@ jupyter-core==4.6.3
 konlpy==0.5.2
 krwordrank==1.0.3
 lxml==4.5.2
+mccabe==0.6.1
 more-itertools==8.4.0
 networkx==2.4
 newspaper3k==0.2.8
@@ -50,6 +52,8 @@ pluggy==0.13.1
 prompt-toolkit==3.0.5
 ptyprocess==0.6.0
 py==1.9.0
+pycodestyle==2.6.0
+pyflakes==2.2.0
 Pygments==2.6.1
 pyparsing==2.4.7
 PySocks==1.7.1

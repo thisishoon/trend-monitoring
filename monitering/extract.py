@@ -1,7 +1,7 @@
-from konlpy.tag import Okt, Komoran
+from konlpy.tag import Komoran
 from newspaper import Article, ArticleException
 from collections import Counter
-from krwordrank.word import KRWordRank, summarize_with_keywords
+from krwordrank.word import KRWordRank
 
 
 def extract_keyword_textrank(input_list):
@@ -38,7 +38,7 @@ def make_news_contents(search_word, news_links):
             article.download()
             article.parse()
             content = article.text
-        except ArticleException as ae:
+        except ArticleException:
             continue
 
         news_content = list()
