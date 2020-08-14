@@ -1,0 +1,6 @@
+test:
+    override:
+        - pytest --cov=./monitering/ ./monitering/tests/
+
+    post:
+        - codecov
