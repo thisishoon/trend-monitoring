@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 from elasticsearch import Elasticsearch
 from datetime import datetime
+from monitering.esmodule import insert_to_es
 
 
 def test_connect_naver_datalab():
@@ -26,3 +27,4 @@ def test_connect_es():
     res = es.index(index="test", body=doc)
 
     assert res['result'] == 'created'
+

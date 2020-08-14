@@ -1,9 +1,9 @@
 import sys
 import threading
 from collect import collect_ranking, collect_news
-from esmodule import insert
+from esmodule import insert_to_es
 from check import check_category
-from extract import extract_keyword_textrank, make_nouns_list
+from extract import extract_keyword_textrank, make_news_contents
 from datetime import datetime
 
 
@@ -19,8 +19,8 @@ def run(es_flag=True, interval_second=600):
     for rank, word in enumerate(ranking):
         category, related_search_word = check_category(word)
         news_titles, news_links = collect_news(word)
-        nouns_list = make_nouns_list(word, news_links)
-        related_keyword = extract_keyword_textrank(nouns_list)
+        news_contents = make_news_contents(word, news_links)
+        related_keyword = extract_keyword_textrank(news_contents)
 
         doc = dict()
         doc['ranking'] = rank + 1
@@ -35,7 +35,7 @@ def run(es_flag=True, interval_second=600):
     print(docs)
 
     if es_flag:
-        insert(docs)
+        insert_to_es(docs, 'trend')
 
     return docs
 
