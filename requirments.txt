@@ -74,7 +74,6 @@ scipy==1.5.2
 six==1.15.0
 smart-open==2.1.0
 soupsieve==2.0.1
-textrank==0.1.0
 threadpoolctl==2.1.0
 tinysegmenter==0.3
 tldextract==2.2.3

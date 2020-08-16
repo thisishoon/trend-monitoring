@@ -41,15 +41,15 @@ def make_news_contents(search_word, news_links):
         except ArticleException:
             continue
 
-        news_content = list()
+        news_content = ""
         word_tag = komoran.pos(content)
 
         for word, morph in word_tag:
             if word not in stopwords and word not in search_word:
                 if morph in ['VA', 'VV']:
-                    news_content.append(word + '다')
+                    news_content += (word + '다' + ' ')
                 elif morph in ['NNP', 'NNG', 'NP'] and len(word) > 1:
-                    news_content.append(word)
+                    news_content += (word + ' ')
 
         news_contents.append(news_content)
 
