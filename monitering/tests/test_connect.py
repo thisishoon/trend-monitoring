@@ -16,13 +16,13 @@ def test_connect_naver_datalab():
     assert res.status_code == 200
 
 
-def test_connect_es():
-    es = Elasticsearch("localhost:9200")
-    doc = {
-        'author': 'Jihoon Kang',
-        'text': 'ElasticSearch Test',
-        'timestamp': datetime.utcnow()
-    }
-    res = es.index(index="test", body=doc)
-
-    assert res['result'] == 'created'
+# def test_connect_es():
+#     es = Elasticsearch("localhost:9200")
+#     doc = {
+#         'author': 'Jihoon Kang',
+#         'text': 'ElasticSearch Test',
+#         'timestamp': datetime.utcnow()
+#     }
+#     res = es.index(index="test", body=doc)
+#
+#     assert res['result'] == 'created'
