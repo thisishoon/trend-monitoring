@@ -5,7 +5,7 @@
 *** See the bottom of this document for the declaration of the reference variables
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -80,7 +80,7 @@ pip install monitoring
 ## Usage
 
 * Run with/without ElasticSearch
-```python
+```sh
 from monitoring.run import run
 result = run(elastic_search=True)
 ```
@@ -88,7 +88,7 @@ The run function collects trends, news data, and keywords from the top 10.
 The data type of result is list of 10 lengths of the dictionary.
 
 * Repeat with/without ElasticSearch
-```python
+```sh
 from monitoring.run import repeat
 repeat(elastic_search=True, interval_second=600)
 ```
@@ -99,7 +99,7 @@ elastic_search and interval_second default value is True and 600
 If you set elastic_search to True, You can use the dashboard visualized in Kibana for the data stored in ElasticSearch.
 
 * Example of result data
-```python
+```sh
 from monitoring.run import run
 result = run(elastic_search=False)
 print(result[0])
