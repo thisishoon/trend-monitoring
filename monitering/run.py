@@ -1,9 +1,9 @@
 import sys
 import threading
-from monitering.collect import collect_ranking, collect_news
-from monitering.esmodule import insert_to_es
-from monitering.check import check_category
-from monitering.extract import extract_keyword_textrank, make_news_contents
+from .collect import collect_ranking, collect_news
+from .esmodule import insert_to_es
+from .check import check_category
+from .extract import extract_keyword_textrank, make_news_contents
 from datetime import datetime
 
 
@@ -46,4 +46,4 @@ def repeat(elastic_search=True, interval_second=100):
 
 
 if __name__ == '__main__':
-    repeat()
+    run(elastic_search=False)
