@@ -170,6 +170,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Jihoon Kang -  jihoon522@sk.com
 
 Project Link: [https://github.com/thisishoon/trend-monitoring](https://github.com/thisishoon/trend-monitoring)
+
 Linkedin: [![LinkedIn][linkedin-shield]][linkedin-url]
 
 

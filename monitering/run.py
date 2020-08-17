@@ -14,7 +14,6 @@ def run(elastic_search=True):
 
     for rank, word in enumerate(ranking):
         print(str(rank+1) + '   collecting')
-
         category, related_search_word = check_category(word)
         news_titles, news_links = collect_news(word)
         news_contents = make_news_contents(word, news_links)
@@ -38,11 +37,12 @@ def run(elastic_search=True):
     return docs
 
 
-def repeat(elastic_search=True, interval_second=600):
-    timer = threading.Timer(interval_second, run)
+def repeat(elastic_search=True, interval_second=100):
+    timer = threading.Timer(interval_second, repeat, args=[elastic_search, interval_second])
     timer.start()
     run(elastic_search)
+    return True
 
 
 if __name__ == '__main__':
-    repeat(elastic_search=True)
+    repeat()
