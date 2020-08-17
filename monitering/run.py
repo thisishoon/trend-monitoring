@@ -1,9 +1,9 @@
 import sys
 import threading
-from collect import collect_ranking, collect_news
-from esmodule import insert_to_es
-from check import check_category
-from extract import extract_keyword_textrank, make_news_contents
+from monitering.collect import collect_ranking, collect_news
+from monitering.esmodule import insert_to_es
+from monitering.check import check_category
+from monitering.extract import extract_keyword_textrank, make_news_contents
 from datetime import datetime
 
 
@@ -27,6 +27,7 @@ def run(elastic_search=True):
         doc['related_keyword'] = related_keyword
         doc['news_title'] = news_titles[0]
         doc['timestamp'] = date
+        doc['score'] = (10-rank)*10
         docs.append(doc)
 
     print(docs)
