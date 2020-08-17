@@ -1,8 +1,9 @@
+import threading
 from monitering.run import run, repeat
 
 
 def test_run():
-    docs = run()
+    docs = run(elastic_search=False)
     assert len(docs) == 10
 
     for doc in docs:
@@ -10,3 +11,10 @@ def test_run():
         assert 'ranking' in doc.keys()
         assert 0 < doc.get('ranking') & doc.get('ranking') <= 10
         assert 'category' in doc.keys()
+
+
+def test_repeat():
+    timer, alive_flag = repeat(elastic_search=False, interval_second=600)
+
+    assert alive_flag is True
+    timer.cancel()

@@ -42,7 +42,8 @@ def repeat(elastic_search=True, interval_second=100):
     timer = threading.Timer(interval_second, repeat, args=[elastic_search, interval_second])
     timer.start()
     run(elastic_search)
-    return True
+
+    return timer, timer.is_alive()
 
 
 if __name__ == '__main__':
