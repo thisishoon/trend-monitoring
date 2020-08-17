@@ -9,7 +9,7 @@
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
+[![codecov](https://codecov.io/gh/thisishoon/trend-monitering/branch/develop/graph/badge.svg)](https://codecov.io/gh/<thisishoon>/<trend-monitering>)
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 

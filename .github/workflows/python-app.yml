@@ -35,4 +35,9 @@ jobs:
         
     - name: Test with pytest
       run: |
-        pytest 
+        pytest
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+        with:
+          token: c735bcc6-44b7-43cf-a82b-51cd3b745bbc
