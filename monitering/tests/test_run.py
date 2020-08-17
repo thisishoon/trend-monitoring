@@ -13,6 +13,7 @@ def test_run():
         assert 'category' in doc.keys()
 
 
+# To do Issue : why timer is alive after timer cancle()?
 def test_repeat():
     timer, alive_flag = repeat(elastic_search=False, interval_second=600)
 
