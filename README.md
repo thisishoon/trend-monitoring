@@ -80,23 +80,68 @@ pip install monitoring
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-* Run with ElasticSearch
+* Run with/without ElasticSearch
 ```python
 from monitoring.run import run
-run(es_flag=True, interval_second=600)
+result = run(elastic_search=True)
 ```
+The run function collects trends, news data, and keywords from the top 10.
+The data type of result is list of 10 lengths of the dictionary.
 
-* Run without ElasticSearch
+* Repeat with/without ElasticSearch
+```python
+from monitoring.run import repeat
+repeat(elastic_search=True, interval_second=600)
+```
+The repeat function executes the run function by thread timer every interval_second
+
+elastic_search and interval_second default value is True and 600
+
+If you set elastic_search to True, You can use the dashboard visualized in Kibana for the data stored in ElasticSearch.
+
+* Example of result data
 ```python
 from monitoring.run import run
-result = run(es_flag=False, interval_second=600)
-print(result)
+result = run(elastic_search=False)
+print(result[0])
 ```
 
-* Example of result
 ```json
-
+{
+    "ranking": 1,
+    "word": "걸캅스",
+    "category": [
+      "영화"
+    ],
+    "related_search_word": [
+      "영화 걸캅스",
+      "걸캅스 주우재",
+      "라미란 이성경",
+      "이성경",
+      "이성경 라미란",
+      "위하준",
+      "라미란",
+      "걸캅스 이레",
+      "걸캅스 하정우",
+      "정직한 후보"
+    ],
+    "related_keyword": [
+      "사건",
+      "라미란",
+      "스타트렉",
+      "콤비",
+      "다크니스",
+      "기록",
+      "이성",
+      "수사",
+      "성범죄",
+      "검사"
+    ],
+    "news_title": "[집에서 볼만한 영화추천] 걸캅스, 검사외전, 스타트렉 다크니스&비욘드",
+    "timestamp": "2020-08-17T03:35:28.942994"
+}
 ```
+
 
 
 <!-- CONTRIBUTING -->
@@ -125,6 +170,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Jihoon Kang -  jihoon522@sk.com
 
 Project Link: [https://github.com/thisishoon/trend-monitoring](https://github.com/thisishoon/trend-monitoring)
+Linkedin: [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
