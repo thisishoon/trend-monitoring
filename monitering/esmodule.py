@@ -13,13 +13,11 @@ def insert_to_es(docs, index_name='trend', path='localhost:9200'):
             res = es.index(index=index_name, body=doc)
             result.append(res['result'])
         except ElasticsearchException:
-            print('es is not working')
+            print('ElasticSearch is not running')
         except ConnectionError:
-            print("ElasticSearch is not running")
+            print("ElasticSearch is not working")
         except NewConnectionError:
-            print("ElasticSearch is not running2")
+            print("ElasticSearch is not working2")
 
-    if len(result) > 1:
-        return True
-    else:
-        return False
+    return result
+

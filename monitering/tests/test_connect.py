@@ -1,6 +1,7 @@
 import requests
 from elasticsearch import Elasticsearch
 from datetime import datetime
+from monitering.esmodule import insert_to_es
 
 
 def test_connect_naver_datalab():
@@ -13,13 +14,15 @@ def test_connect_naver_datalab():
     assert res.status_code == 200
 
 
-# def test_connect_es():
-#     es = Elasticsearch("localhost:9200")
-#     doc = {
-#         'author': 'Jihoon Kang',
-#         'text': 'ElasticSearch Test',
-#         'timestamp': datetime.utcnow()
-#     }
-#     res = es.index(index="test", body=doc)
-#
-#     assert res['result'] == 'created'
+def test_connect_es():
+    docs = list()
+    docs.append({'author': 'thisishoon'})
+    docs.append({'author': 'jihoon kang'})
+    results = insert_to_es(docs, index_name='test', path='localhost:9200')
+    assert type(results) == list
+    assert len(results) > 0
+    for result in results:
+        assert result == 'created'
+
+    results = insert_to_es(docs, index_name='test2', path='localhost:9100')
+    assert type(results) == list
