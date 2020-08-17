@@ -30,7 +30,7 @@ def collect_news(word):
     news = soup.select("ul.type01 > li")
     news_titles = []
     news_links = []
-    print("--------------")
+
     for new in news[0:5]:
         title = new.select_one("a._sp_each_title").text
         link = new.select_one("a")['href']

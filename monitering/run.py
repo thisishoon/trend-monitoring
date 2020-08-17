@@ -7,15 +7,14 @@ from extract import extract_keyword_textrank, make_news_contents
 from datetime import datetime
 
 
-def run(es_flag=True, interval_second=600):
-    timer = threading.Timer(interval_second, run, args=[es_flag, interval_second])
-    timer.start()
-
+def run(elastic_search=True):
     date = datetime.utcnow()
     ranking = collect_ranking()
     docs = []
 
     for rank, word in enumerate(ranking):
+        print(str(rank+1) + '   collecting')
+
         category, related_search_word = check_category(word)
         news_titles, news_links = collect_news(word)
         news_contents = make_news_contents(word, news_links)
@@ -33,16 +32,17 @@ def run(es_flag=True, interval_second=600):
 
     print(docs)
 
-    if es_flag:
-        insert_to_es(docs, 'trend')
+    if elastic_search:
+        insert_to_es(docs)
 
     return docs
 
 
+def repeat(elastic_search=True, interval_second=600):
+    timer = threading.Timer(interval_second, run)
+    timer.start()
+    run(elastic_search)
+
+
 if __name__ == '__main__':
-    es_flag = True
-
-    if len(sys.argv) > 1:
-        es_flag = (sys.argv[1] != 'False')
-
-    run(es_flag)
+    repeat(elastic_search=True)
