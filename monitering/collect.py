@@ -24,8 +24,6 @@ def collect_ranking():
     return result
 
 
-
-
 def collect_news(word):
     news_url = "https://search.naver.com/search.naver?where=news&query=" + word
     news_res = requests.get(news_url, headers=HEADERS)
@@ -34,7 +32,7 @@ def collect_news(word):
     news = soup.select("ul.type01 > li")
     news_titles = []
     news_links = []
-    print("--------------")
+
     for new in news[0:5]:
         title = new.select_one("a._sp_each_title").text
         link = new.select_one("a")['href']
