@@ -1,5 +1,5 @@
 import threading
-from monitering.run import run, repeat
+from tremo.run import run, repeat
 
 
 def test_run():

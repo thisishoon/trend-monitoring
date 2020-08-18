@@ -1,4 +1,4 @@
-from monitering.collect import collect_ranking, collect_news
+from tremo.collect import collect_ranking, collect_news
 
 
 def test_collect_ranking():

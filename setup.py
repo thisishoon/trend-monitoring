@@ -8,7 +8,7 @@ def file(path: str) -> str:
 
 
 setup(
-    name='monitering',
+    name='tremo',
     version='0.0.5',
     description='Real-time Trend Data Analysis/Monitoring System',
     author='Jihoon Kang',
@@ -25,7 +25,7 @@ setup(
     # 만약 제외하고자 하는 파일이 있다면 exclude에 적어줍니다.
     packages=find_packages(exclude=[]),
     # 패키지의 키워드를 적습니다.
-    keywords=['trend', 'monitering'],
+    keywords=['trend', 'tremo'],
     # 해당 패키지를 사용하기 위해 필요한 파이썬 버전을 적습니다.
     python_requires='>=3',
     # 파이썬 파일이 아닌 다른 파일을 포함시키고 싶다면 package_data에 포함시켜야 합니다.

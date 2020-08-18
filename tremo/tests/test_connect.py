@@ -1,7 +1,7 @@
 import requests
 from elasticsearch import Elasticsearch
 from datetime import datetime
-from monitering.esmodule import insert_to_es
+from tremo.esmodule import insert_to_es
 
 
 def test_connect_naver_datalab():

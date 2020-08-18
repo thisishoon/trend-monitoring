@@ -1,4 +1,4 @@
-from monitering.check import check_category
+from tremo.check import check_category
 
 def test_check_category():
     category, related_search = check_category('김태희')
