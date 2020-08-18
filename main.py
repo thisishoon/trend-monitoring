@@ -1,3 +1,5 @@
-from tremo.run import run, repeat, tmr
+from tremo.run import run, repeat
 
-repeat(elastic_search=True, interval_second=600)
+# repeat(elastic_search=True, interval_second=600)
+
+run(elastic_search=True)

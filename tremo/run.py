@@ -1,7 +1,7 @@
 import sys
 import threading
 from .collect import collect_ranking, collect_news
-from .esmodule import insert_to_es
+from .esmodule import insert_to_es, insert_es_bulk
 from .check import check_category
 from .extract import extract_keyword_textrank, make_news_contents
 from datetime import datetime
@@ -33,7 +33,8 @@ def run(elastic_search=True):
     print(docs)
 
     if elastic_search:
-        insert_to_es(docs)
+        # insert_to_es(docs)
+        insert_es_bulk(docs, index_name='trend')
 
     return docs
 
