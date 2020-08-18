@@ -1,3 +1,3 @@
-from monitering.run import run, repeat
+from tremo.run import run, repeat, tmr
 
-run(elastic_search=False)
+repeat(elastic_search=True, interval_second=600)

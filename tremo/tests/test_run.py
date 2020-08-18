@@ -13,9 +13,10 @@ def test_run():
         assert 'category' in doc.keys()
 
 
-# To do Issue : why timer is alive after timer cancle()?
 def test_repeat():
     timer, alive_flag = repeat(elastic_search=False, interval_second=600)
 
-    assert alive_flag is True
+    assert alive_flag is True  # 반복을 위한 timer 실행중인 상태
     timer.cancel()
+    timer.join(5)
+    assert timer.is_alive() is False
