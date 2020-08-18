@@ -45,6 +45,3 @@ def repeat(elastic_search=True, interval_second=100):
 
     return timer, timer.is_alive()
 
-
-if __name__ == '__main__':
-    run(elastic_search=False)
