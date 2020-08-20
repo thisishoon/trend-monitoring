@@ -150,8 +150,9 @@ You can import our JSON file from Kibana UI under Management > Saved Objects > I
 ```
 1. Click Import.
 2. Navigate to the JSON file that represents the objects to import.
-3. Indicate whether to overwrite objects already in Kibana.
-4. Click Import.
+3. Import trend-monitoring/export.ndjson file
+4. Indicate whether to overwrite objects already in Kibana.
+5. Click Import.
 ```
 
 If you import json file, you can use dash board like [this](#about-the-project)
