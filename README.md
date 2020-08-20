@@ -5,11 +5,10 @@
 *** See the bottom of this document for the declaration of the reference variables
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
@@ -19,7 +18,6 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
@@ -32,7 +30,9 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![demo_image](https://user-images.githubusercontent.com/49490703/89879114-6a02d200-dbfd-11ea-97f2-8361ca5c8e3b.png)
+
+
+![kibana](https://user-images.githubusercontent.com/49490703/90717826-75d05180-e2eb-11ea-9874-1e57caba3b26.gif)
 
 Dashboard that can analyze/monitor the trends of entertainment characteristics occurring in complex situations
 
@@ -48,7 +48,7 @@ To get a local copy up and running follow these simple example steps.
 This is an example of how to list things you need to use the software and how to install them.
 * Python
 ```sh
-Python >= 3.8
+Python > 3.7
 ```
 
 
@@ -71,7 +71,7 @@ brew install kibana
 
 * Install packages via pip [https://pypi.org/project/monitering/](https://pypi.org/project/monitering/)
 ```sh
-pip install monitoring
+pip install tremo
 ```
 
 
@@ -81,27 +81,16 @@ pip install monitoring
 ## Usage
 
 * Run with/without ElasticSearch
-```python
-from monitoring.run import run
-result = run(elastic_search=True)
+```sh
+from tremo.run import run
+result = run(elastic_search=False)
 ```
 The run function collects trends, news data, and keywords from the top 10.
 The data type of result is list of 10 lengths of the dictionary.
 
-* Repeat with/without ElasticSearch
-```python
-from monitoring.run import repeat
-repeat(elastic_search=True, interval_second=600)
-```
-The repeat function executes the run function by thread timer every interval_second
-
-elastic_search and interval_second default value is True and 600
-
-If you set elastic_search to True, You can use the dashboard visualized in Kibana for the data stored in ElasticSearch.
-
 * Example of result data
-```python
-from monitoring.run import run
+```sh
+from tremo.run import run
 result = run(elastic_search=False)
 print(result[0])
 ```
@@ -142,6 +131,30 @@ print(result[0])
 }
 ```
 
+* Repeat with/without ElasticSearch
+```sh
+from tremo.run import repeat
+repeat(elastic_search=True, interval_second=600)
+```
+The repeat function executes the run function by thread timer every interval_second
+
+elastic_search and interval_second default value is True and 600
+
+If you set elastic_search to True, You can use the dashboard visualized in Kibana for the data stored in ElasticSearch.
+
+
+* import kibana dash board
+
+You can import our JSON file from Kibana UI under Management > Saved Objects > Import. 
+
+```
+1. Click Import.
+2. Navigate to the JSON file that represents the objects to import.
+3. Indicate whether to overwrite objects already in Kibana.
+4. Click Import.
+```
+
+If you import json file, you can use dash board like [this](#about-the-project)
 
 
 <!-- CONTRIBUTING -->
@@ -170,6 +183,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Jihoon Kang -  jihoon522@sk.com
 
 Project Link: [https://github.com/thisishoon/trend-monitoring](https://github.com/thisishoon/trend-monitoring)
+
 Linkedin: [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
