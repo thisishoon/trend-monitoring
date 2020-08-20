@@ -18,7 +18,6 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
@@ -31,8 +30,9 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![kibana_demo](https://user-images.githubusercontent.com/49490703/90716639-6a2f5b80-e2e8-11ea-86ac-461cb74c4338.gif)
 
+
+![kibana](https://user-images.githubusercontent.com/49490703/90717826-75d05180-e2eb-11ea-9874-1e57caba3b26.gif)
 
 Dashboard that can analyze/monitor the trends of entertainment characteristics occurring in complex situations
 
