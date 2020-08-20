@@ -1,4 +1,3 @@
-import threading
 from tremo.run import run, repeat
 
 

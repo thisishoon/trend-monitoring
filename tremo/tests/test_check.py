@@ -1,5 +1,6 @@
 from tremo.check import check_category
 
+
 def test_check_category():
     category, related_search = check_category('김태희')
     assert '영화배우' in category

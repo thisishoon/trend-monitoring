@@ -1,4 +1,3 @@
-import sys
 import threading
 from .collect import collect_ranking, collect_news
 from .esmodule import insert_to_es, insert_es_bulk
