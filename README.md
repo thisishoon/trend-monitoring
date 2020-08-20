@@ -31,7 +31,8 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![demo_image](https://user-images.githubusercontent.com/49490703/89879114-6a02d200-dbfd-11ea-97f2-8361ca5c8e3b.png)
+![kibana_demo](https://user-images.githubusercontent.com/49490703/90716639-6a2f5b80-e2e8-11ea-86ac-461cb74c4338.gif)
+
 
 Dashboard that can analyze/monitor the trends of entertainment characteristics occurring in complex situations
 
@@ -47,7 +48,7 @@ To get a local copy up and running follow these simple example steps.
 This is an example of how to list things you need to use the software and how to install them.
 * Python
 ```sh
-Python >= 3.8
+Python > 3.7
 ```
 
 
@@ -70,7 +71,7 @@ brew install kibana
 
 * Install packages via pip [https://pypi.org/project/monitering/](https://pypi.org/project/monitering/)
 ```sh
-pip install monitoring
+pip install tremo
 ```
 
 
@@ -81,26 +82,15 @@ pip install monitoring
 
 * Run with/without ElasticSearch
 ```sh
-from monitoring.run import run
-result = run(elastic_search=True)
+from tremo.run import run
+result = run(elastic_search=False)
 ```
 The run function collects trends, news data, and keywords from the top 10.
 The data type of result is list of 10 lengths of the dictionary.
 
-* Repeat with/without ElasticSearch
-```sh
-from monitoring.run import repeat
-repeat(elastic_search=True, interval_second=600)
-```
-The repeat function executes the run function by thread timer every interval_second
-
-elastic_search and interval_second default value is True and 600
-
-If you set elastic_search to True, You can use the dashboard visualized in Kibana for the data stored in ElasticSearch.
-
 * Example of result data
 ```sh
-from monitoring.run import run
+from tremo.run import run
 result = run(elastic_search=False)
 print(result[0])
 ```
@@ -141,6 +131,30 @@ print(result[0])
 }
 ```
 
+* Repeat with/without ElasticSearch
+```sh
+from tremo.run import repeat
+repeat(elastic_search=True, interval_second=600)
+```
+The repeat function executes the run function by thread timer every interval_second
+
+elastic_search and interval_second default value is True and 600
+
+If you set elastic_search to True, You can use the dashboard visualized in Kibana for the data stored in ElasticSearch.
+
+
+* import kibana dash board
+
+You can import our JSON file from Kibana UI under Management > Saved Objects > Import. 
+
+```
+1. Click Import.
+2. Navigate to the JSON file that represents the objects to import.
+3. Indicate whether to overwrite objects already in Kibana.
+4. Click Import.
+```
+
+If you import json file, you can use dash board like [this](#about-the-project)
 
 
 <!-- CONTRIBUTING -->
