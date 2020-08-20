@@ -9,3 +9,6 @@ def test_check_category():
 
     category, related_search = check_category('다만 악에서 구하소서')
     assert '영화' in category
+
+    category, related_search = check_category('윤은혜')
+    assert '탤런트' in category

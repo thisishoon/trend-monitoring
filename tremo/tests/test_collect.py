@@ -18,12 +18,3 @@ def test_collect_ranking():
             assert type(news_links[i]) == str
             assert news_links[i] != ''
             assert news_links[i][0:4] == 'http'
-
-#
-# def test_naver_main():
-#     url = 'https://www.naver.com/'
-#     selector = '#header > div.special_bg > div > div.logo_area > h1 > a > span'
-#     result = crawling(url, selector)
-#     naver = result[0].text
-#     assert type(naver) == str
-#     assert naver == '네이버'

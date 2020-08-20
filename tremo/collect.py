@@ -9,13 +9,9 @@ HEADERS = {
 
 def collect_ranking():
     url = 'https://datalab.naver.com/keyword/realtimeList.naver?entertainment=2&groupingLevel=4&marketing=-2&news=-2&sports=-2&where=main'
-    date = datetime.utcnow()
-    dicts = []
-
-    res = requests.get(url, headers=HEADERS)
-    soup = BeautifulSoup(res.text, 'html.parser')
-    ranking = soup.select('span.item_title')
     result = []
+    ranking = crawling(url, 'span.item_title')
+    
     for word in ranking[0:10]:
         result.append(word.text)
 
@@ -24,10 +20,8 @@ def collect_ranking():
 
 def collect_news(word):
     news_url = "https://search.naver.com/search.naver?where=news&query=" + word
-    news_res = requests.get(news_url, headers=HEADERS)
-    soup = BeautifulSoup(news_res.text, 'html.parser')
+    news = crawling(news_url, 'ul.type01 > li')
 
-    news = soup.select("ul.type01 > li")
     news_titles = []
     news_links = []
 
