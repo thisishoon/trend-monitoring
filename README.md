@@ -69,7 +69,7 @@ brew install elasticsearch
 brew install kibana
 ```
 
-* Install packages via pip [https://pypi.org/project/monitering/](https://pypi.org/project/monitering/)
+* Install packages via pip [https://pypi.org/project/tremo/](https://pypi.org/project/tremo/)
 ```sh
 pip install tremo
 ```
