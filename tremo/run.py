@@ -6,7 +6,7 @@ from .extract import extract_keyword_textrank, make_news_contents
 from datetime import datetime
 
 
-def run(elastic_search=True):
+def run(elastic_search=False):
     date = datetime.utcnow()
     ranking = collect_ranking()
     docs = []
@@ -32,12 +32,12 @@ def run(elastic_search=True):
     print(docs)
 
     if elastic_search:
-        insert_es_bulk(docs, index_name='trend')
+        insert_es_bulk(docs, index_name='trend', path=elastic_search)
 
     return docs
 
 
-def repeat(elastic_search=True, interval_second=100):
+def repeat(elastic_search=False, interval_second=100):
     timer = threading.Timer(interval_second, repeat, args=[elastic_search, interval_second])
     timer.start()
     run(elastic_search)
