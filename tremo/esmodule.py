@@ -19,6 +19,7 @@ def insert_to_es(docs, index_name='trend', path='localhost:9200'):
 
 
 def insert_es_bulk(docs, index_name='trend', path='localhost:9200'):
+        
     es = Elasticsearch(path)
     try:
         result = helpers.bulk(es, docs, index=index_name)

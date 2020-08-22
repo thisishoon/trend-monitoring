@@ -24,9 +24,9 @@ def check_category(item):
 
     category = []
 
-    person = soup.select_one(ELEMENT_CATEGORY_PERSON)
+    person = soup.select(ELEMENT_CATEGORY_PERSON)
     if person:
-        category += person.text.split(', ')
+        category += person[-1].text.split(', ')
 
     movie = soup.select_one(ELEMENT_CATEGORY_MOVIE)
     if movie:

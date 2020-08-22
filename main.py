@@ -1,5 +1,5 @@
 from tremo.run import run, repeat
 
-repeat(elastic_search=True, interval_second=600)
+repeat(elastic_search='localhost:9200', interval_second=600)
 
 

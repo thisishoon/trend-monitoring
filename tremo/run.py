@@ -37,7 +37,7 @@ def run(elastic_search=False):
     return docs
 
 
-def repeat(elastic_search=False, interval_second=100):
+def repeat(elastic_search=False, interval_second=600):
     timer = threading.Timer(interval_second, repeat, args=[elastic_search, interval_second])
     timer.start()
     run(elastic_search)
