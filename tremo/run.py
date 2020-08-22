@@ -1,4 +1,7 @@
 import threading
+import requests
+import logging
+import pprint
 from .collect import collect_ranking, collect_news
 from .esmodule import insert_to_es, insert_es_bulk
 from .check import check_category
@@ -29,7 +32,8 @@ def run(elastic_search=False):
         doc['score'] = (10-rank)*10
         docs.append(doc)
 
-    print(docs)
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(docs)
 
     if elastic_search:
         insert_es_bulk(docs, index_name='trend', path=elastic_search)
@@ -38,9 +42,15 @@ def run(elastic_search=False):
 
 
 def repeat(elastic_search=False, interval_second=600):
+    logging.basicConfig(filename='./error.log', level=logging.ERROR)
     timer = threading.Timer(interval_second, repeat, args=[elastic_search, interval_second])
     timer.start()
-    run(elastic_search)
+
+    try:
+        run(elastic_search)
+    except Exception as e:
+        logging.error(str(e))
+    except (requests.exceptions.RequestException, ConnectionResetError) as e:
+        logging.error(str(e))
 
     return timer, timer.is_alive()
-

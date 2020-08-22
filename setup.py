@@ -9,7 +9,7 @@ def file(path: str) -> str:
 
 setup(
     name='tremo',
-    version='0.3.1',
+    version='0.3.2',
     description='Real-time Trend Data Analysis/Monitoring System',
     author='Jihoon Kang',
     author_email='jihoon522@naver.com',
