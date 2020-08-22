@@ -7,6 +7,8 @@ HEADERS = {
     AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
 }
 URL_CATEGORY = 'https://search.naver.com/search.naver?where=nexearch&sm=tab_jum&query='
+NAME_MOVIE = '영화'
+NAME_UNKNOWN = 'unknown'
 
 
 def check_category(item):
@@ -21,11 +23,11 @@ def check_category(item):
     if person_result:
         category += person_result
     elif movie_result:
-        category.append("영화")
+        category.append(NAME_MOVIE)
     elif tv_result:
         category.append(tv_result)
     else:
-        category.append("Unknown")
+        category.append(NAME_UNKNOWN)
 
     related_search = check_related_search(soup)
 
