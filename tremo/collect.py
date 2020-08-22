@@ -3,13 +3,18 @@ from bs4 import BeautifulSoup
 
 
 HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'}
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) \
+    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
+}
+URL_RANKING = 'https://datalab.naver.com/keyword/realtimeList.naver?entertainment=2&groupingLevel=4&marketing=-2&news=-2&sports=-2&where=main'
+URL_NEWS = 'https://search.naver.com/search.naver?where=news&query='
+ELEMENT_RANKING = 'span.item_title'
+ELEMENT_NEWS = 'ul.type01 > li'
 
 
 def collect_ranking():
-    url = 'https://datalab.naver.com/keyword/realtimeList.naver?entertainment=2&groupingLevel=4&marketing=-2&news=-2&sports=-2&where=main'
     result = []
-    ranking = crawling(url, 'span.item_title')
+    ranking = crawling(URL_RANKING, ELEMENT_RANKING)
     
     for word in ranking[0:10]:
         result.append(word.text)
@@ -18,9 +23,8 @@ def collect_ranking():
 
 
 def collect_news(word):
-    news_url = "https://search.naver.com/search.naver?where=news&query=" + word
-    news = crawling(news_url, 'ul.type01 > li')
 
+    news = crawling(URL_NEWS + word, ELEMENT_NEWS)
     news_titles = []
     news_links = []
 
@@ -34,9 +38,6 @@ def collect_news(word):
 
 
 def crawling(url, selector):
-    HEADERS = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'}
-
     response = requests.get(url, headers=HEADERS)
     soup = BeautifulSoup(response.text, 'html.parser')
 

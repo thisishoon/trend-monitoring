@@ -29,7 +29,7 @@ setup(
     # 해당 패키지를 사용하기 위해 필요한 파이썬 버전을 적습니다.
     python_requires='>=3',
     # 파이썬 파일이 아닌 다른 파일을 포함시키고 싶다면 package_data에 포함시켜야 합니다.
-    package_data={},
+    package_data={'bs4', 'krwordrank', 'konlpy', 'elasticsearch', 'newspaper3k'},
 
     # 위의 package_data에 대한 설정을 하였다면 zip_safe설정도 해주어야 합니다.
     zip_safe=False,
