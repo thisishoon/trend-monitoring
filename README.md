@@ -1,21 +1,13 @@
 <!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
-
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
+
 
 * [About the Project](#about-the-project)
 * [Getting Started](#getting-started)
@@ -69,7 +61,7 @@ brew install elasticsearch
 brew install kibana
 ```
 
-* Install packages via pip [https://pypi.org/project/monitering/](https://pypi.org/project/monitering/)
+* Install packages via pip [https://pypi.org/project/tremo/](https://pypi.org/project/tremo/)
 ```sh
 pip install tremo
 ```
