@@ -32,7 +32,6 @@ def run(elastic_search=True):
     print(docs)
 
     if elastic_search:
-        # insert_to_es(docs)
         insert_es_bulk(docs, index_name='trend')
 
     return docs

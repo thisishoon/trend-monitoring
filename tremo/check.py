@@ -24,26 +24,17 @@ def check_category(item):
 
     category = []
 
-    try:
-        query = soup.select_one(ELEMENT_CATEGORY_PERSON).text
-    except AttributeError:
-        pass
-    else:
-        category += query.split(', ')
+    person = soup.select_one(ELEMENT_CATEGORY_PERSON)
+    if person:
+        category += person.text.split(', ')
 
-    try:
-        soup.select_one(ELEMENT_CATEGORY_MOVIE).text
-    except AttributeError:
-        pass
-    else:
+    movie = soup.select_one(ELEMENT_CATEGORY_MOVIE)
+    if movie:
         category.append(NAME_MOVIE)
 
-    try:
-        query = soup.select_one(ELEMENT_CATEGORY_TV).text.strip()
-    except AttributeError:
-        pass
-    else:
-        category.append(query)
+    tv = soup.select_one(ELEMENT_CATEGORY_TV)
+    if tv:
+        category.append(tv.text.strip())
 
     if not category:
         category.append(NAME_UNKNOWN)
