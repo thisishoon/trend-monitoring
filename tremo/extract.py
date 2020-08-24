@@ -21,10 +21,7 @@ def extract_keyword_textrank(input_list):
 
     related_keyword = list(passwords.keys())
 
-    if len(related_keyword) > 15:
-        return related_keyword[:15]
-    else:
-        return related_keyword
+    return related_keyword[:15]
 
 
 def make_news_contents(search_word, news_links):
