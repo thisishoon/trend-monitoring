@@ -15,22 +15,15 @@ def run(elastic_search=False):
     docs = []
 
     for rank, word in enumerate(ranking):
-        print(str(rank+1) + '   collecting')
+        print(str(rank + 1) + '   collecting')
         category, related_search_word = check_category(word)
         news_titles, news_links = collect_news(word)
         news_contents = make_news_contents(word, news_links)
         related_keyword = extract_keyword_textrank(news_contents)
 
-        doc = dict()
-        doc['ranking'] = rank + 1
-        doc['word'] = word
-        doc['category'] = category
-        doc['related_search_word'] = related_search_word
-        doc['related_keyword'] = related_keyword
-        doc['news_title'] = news_titles[0]
-        doc['timestamp'] = date
-        doc['score'] = (10-rank)*10
-        docs.append(doc)
+        result = make_document(rank, word, category, related_search_word, related_keyword, news_titles[0], date)
+
+        docs.append(result)
 
     pp = pprint.PrettyPrinter(indent=4)
     pp.pprint(docs)
@@ -54,3 +47,18 @@ def repeat(elastic_search=False, interval_second=600):
         logging.error(str(e))
 
     return timer, timer.is_alive()
+
+
+def make_document(rank, word, category, related_search_word, related_keyword, news_titles, date):
+    doc = dict()
+
+    doc['ranking'] = rank + 1
+    doc['word'] = word
+    doc['category'] = category
+    doc['related_search_word'] = related_search_word
+    doc['related_keyword'] = related_keyword
+    doc['news_title'] = news_titles[0]
+    doc['timestamp'] = date
+    doc['score'] = (10 - rank) * 10
+
+    return doc
