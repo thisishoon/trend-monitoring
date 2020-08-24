@@ -1,5 +1,5 @@
 import requests
-from tremo.esmodule import insert_to_es
+from tremo.es_module import insert_to_es, insert_es_bulk
 from tremo.collect import crawling
 
 
@@ -21,8 +21,8 @@ def test_connect_es():
     results = insert_to_es(docs, index_name='test', path='localhost:9200')
     assert type(results) == list
 
-    results = insert_to_es(docs, index_name='test2', path='localhost:9100')
-    assert type(results) == list
+    results = insert_es_bulk(docs, index_name='test', path='localhost:9200')
+    assert results[0] == 2
 
 
 def text_connect_naver():

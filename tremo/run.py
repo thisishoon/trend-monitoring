@@ -3,7 +3,7 @@ import requests
 import logging
 import pprint
 from .collect import collect_ranking, collect_news
-from .esmodule import insert_to_es, insert_es_bulk
+from .es_module import insert_to_es, insert_es_bulk
 from .check import check_category
 from .extract import extract_keyword_textrank, make_news_contents
 from datetime import datetime
@@ -21,9 +21,9 @@ def run(elastic_search=False):
         news_contents = make_news_contents(word, news_links)
         related_keyword = extract_keyword_textrank(news_contents)
 
-        result = make_document(rank, word, category, related_search_word, related_keyword, news_titles[0], date)
+        doc = make_document(rank, word, category, related_search_word, related_keyword, news_titles[0], date)
 
-        docs.append(result)
+        docs.append(doc)
 
     pp = pprint.PrettyPrinter(indent=4)
     pp.pprint(docs)

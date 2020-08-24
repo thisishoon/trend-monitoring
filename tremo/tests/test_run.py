@@ -1,4 +1,5 @@
-from tremo.run import run, repeat
+from datetime import datetime
+from tremo.run import run, repeat, make_document
 
 
 def test_run():
@@ -19,3 +20,19 @@ def test_repeat():
     timer.cancel()
     timer.join(5)
     assert timer.is_alive() is False
+
+
+def test_make_document():
+    rank = 1
+    word = 'Btv'
+    category = 'Media Service'
+    related_search_word = ['SK', 'SK Broadband', 'Intern', 'Media', 'Network']
+    related_keyword = ['SW', 'Backend', 'AIPlatformSquad', 'ProductCOE']
+    news_title = 'Kang Jihoon will converted to full-time employee as manager'
+    date = datetime.utcnow()
+
+    doc = make_document(rank, word, category, related_search_word, related_keyword, news_title, date)
+
+    assert type(doc) is dict
+    assert len(doc) != 0
+    assert doc is not None

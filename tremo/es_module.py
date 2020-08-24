@@ -27,11 +27,3 @@ def insert_es_bulk(docs, index_name='trend', path='localhost:9200'):
     except ElasticsearchException:
         print('ElasticSearch is not running')
         return False
-
-
-def generate_data(docs):
-    for doc in docs:
-        yield {
-            "_index": "test_bulk",
-            '_source': doc
-        }
