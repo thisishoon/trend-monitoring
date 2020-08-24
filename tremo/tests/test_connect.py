@@ -20,9 +20,8 @@ def test_connect_es():
     docs.append({'author': 'jihoon kang'})
     results = insert_to_es(docs, index_name='test', path='localhost:9200')
     assert type(results) == list
-
     results = insert_es_bulk(docs, index_name='test', path='localhost:9200')
-    assert results[0] == 2
+
 
 
 def text_connect_naver():
