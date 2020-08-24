@@ -14,12 +14,12 @@ def extract_keyword_textrank(input_list):
 
     keywords, rank, graph = wordrank_extractor.extract(texts, beta, max_iter)
 
-    stopwords = {'뉴스', '기자', '기사', '평점', '주연', '방송', '편성표'}
+    stop_words = {'뉴스', '기자', '기사', '평점', '주연', '방송', '편성표'}
 
-    passwords = {word: score for word, score in sorted(
-        keywords.items(), key=lambda x: -x[1])[:100] if not (word in stopwords)}
+    filtered_words = {word: score for word, score in sorted(
+        keywords.items(), key=lambda x: -x[1])[:100] if not (word in stop_words)}
 
-    related_keyword = list(passwords.keys())
+    related_keyword = list(filtered_words.keys())
 
     return related_keyword[:15]
 
