@@ -26,6 +26,10 @@
 
 ![kibana](https://user-images.githubusercontent.com/49490703/90717826-75d05180-e2eb-11ea-9874-1e57caba3b26.gif)
 
+You can use it for free :point_right: [Demo](https://search-tremo-fenkliifb7hs34jlbmtzcz7jbq.ap-northeast-2.es.amazonaws.com/_plugin/kibana/app/kibana#/dashboard/df78d420-d6f9-11ea-a5ed-b305e0c58646?_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-2h%2Cto%3Anow)))
+
+
+
 Dashboard that can analyze/monitor the trends of entertainment characteristics occurring in complex situations
 
 
@@ -40,33 +44,27 @@ To get a local copy up and running follow these simple example steps.
 This is an example of how to list things you need to use the software and how to install them.
 * Python
 ```sh
-Python > 3.7
+Python >= 3
 ```
 
 
 ### Installation 
+
+* Install package via pip [https://pypi.org/project/tremo/](https://pypi.org/project/tremo/) in your local or virtual envrionment
+```sh
+pip install tremo
+```
+
 
 * Homebrew
 ```sh
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-* ElasticSearch
+* ElasticSearch, Kibana
 ```sh
-brew install elasticsearch
+brew install elasticsearch, kibana
 ```
-
-* Kibana
-```sh
-brew install kibana
-```
-
-* Install packages via pip [https://pypi.org/project/tremo/](https://pypi.org/project/tremo/)
-```sh
-pip install tremo
-```
-
-
 
 
 <!-- USAGE EXAMPLES -->
@@ -75,6 +73,8 @@ pip install tremo
 * Run with/without ElasticSearch
 ```sh
 from tremo.run import run
+
+
 result = run(elastic_search=False)
 ```
 The run function collects trends, news data, and keywords from the top 10.
@@ -83,6 +83,8 @@ The data type of result is list of 10 lengths of the dictionary.
 * Example of result data
 ```sh
 from tremo.run import run
+
+
 result = run(elastic_search=False)
 print(result[0])
 ```
@@ -126,13 +128,15 @@ print(result[0])
 * Repeat with/without ElasticSearch
 ```sh
 from tremo.run import repeat
-repeat(elastic_search=True, interval_second=600)
+
+
+repeat(elastic_search="localhost:9200", interval_second=600)
 ```
 The repeat function executes the run function by thread timer every interval_second
 
-elastic_search and interval_second default value is True and 600
+elastic_search and interval_second default value is False and 600
 
-If you set elastic_search to True, You can use the dashboard visualized in Kibana for the data stored in ElasticSearch.
+If you set elastic_search to `{{YOUR_PATH_TO_ES}}`, You can use the dashboard visualized in Kibana for the data stored in ElasticSearch.
 
 
 * import kibana dash board
